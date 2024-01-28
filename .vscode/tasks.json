@@ -1,0 +1,72 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "CMake: Clean Build Directory",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "${workspaceFolder}/build/*"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "detail": "CMake: buildディレクトリを削除"
+        },
+        {
+            "type": "shell",
+            "label": "CMake: Configure Build System",
+            "command": "cmake",
+            "args": [
+                "-Bbuild",
+                "-H.",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+            ],
+            "dependsOn": [
+                "CMake: Clean Build Directory"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "detail": "CMake: ビルドシステムを設定し、ビルドファイルを生成"
+        },
+        {
+            "type": "shell",
+            "label": "CMake: Build Project",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build"
+            ],
+            "dependsOn": [
+                "CMake: Configure Build System"
+            ],
+            "group": "build",
+            "detail": "CMake: プロジェクトをビルド"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ アクティブなファイルのビルド",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "デバッガーによって生成されたタスク。"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "name": "cpp-dev",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "."
+    },
+    "init": true,
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "C_Cpp.clang_format_fallbackStyle": "Google",
+                "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+                "[cpp]": {
+                    "editor.defaultFormatter": "ms-vscode.cpptools",
+                    "editor.formatOnSave": true,
+                    "editor.formatOnPaste": true
+                },
+                "cmake.configureOnOpen": true
+            },
+            "extensions": [
+                "vadimcn.vscode-lldb",
+                "PKief.material-icon-theme"
+            ]
+        }
+    }
+}
