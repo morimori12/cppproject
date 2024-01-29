@@ -129,16 +129,16 @@ cout << size1 * size2 * size3 << endl;  // 24
 
 #include <iostream>
 #include <vector>
-using namespace std;
+// using namespace std;
 int main() {
   int N, M;
-  cin >> N >> M;
-  vector<int> A(M), B(M);
-  // 入力
+  std::cin >> N >> M;
+  std::vector<int> A(M), B(M);
   for (int i = 0; i < M; i++) {
-    cin >> A.at(i) >> B.at(i);
+    std::cin >> A.at(i) >> B.at(i);
   }
-  vector<vector<char>> table(N, vector<char>(N, '-'));
+
+  std::vector<std::vector<char>> table(N, std::vector<char>(N, '-'));
   for (int i = 0; i < M; i++) {
     A.at(i)--;
     B.at(i)--;
@@ -148,12 +148,11 @@ int main() {
 
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
-      cout << table.at(i).at(j);
-
+      std::cout << table.at(i).at(j);
       if (j == N - 1) {
-        cout << endl;  // 行末なら改行
+        std::cout << std::endl;
       } else {
-        cout << "　";  // 行末でないなら空白を出力
+        std::cout << " ";  // 空文字にする
       }
     }
   }
