@@ -25,13 +25,13 @@ message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 add_compile_options(-march=native -Wall -Wextra -pedantic -Wshadow)
 
 # src/sample1ディレクトリをサブディレクトリとして追加 : このディレクトリには独自のCMakeLists.txtが必要
-add_subdirectory(src/sample1)
+#add_subdirectory(src/sample1)
 
 # src/sample2ディレクトリをサブディレクトリとして追加 : このディレクトリには独自のCMakeLists.txtが必要
-add_subdirectory(src/sample2)
+#add_subdirectory(src/sample2)
 
 # サブディレクトリの追加をした場合にやること
-add_subdirectory(src/sample3)
+#add_subdirectory(src/sample3)
 
 add_subdirectory(study/cppbuild)
 # 1. サブディレクトリ内に"CMakeLists.txt"ファイルを用意する
