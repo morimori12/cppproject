@@ -1,93 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 各操作を行う関数を実装する
+// 参照渡しを用いて、呼び出し側の変数の値を変更する
+void saiten(vector<vector<int>> &A, int &correct_count, int &wrong_count) {
+  // 呼び出し側のAの各マスを正しい値に修正する
+  // Aのうち、正しい値の書かれたマスの個数を correct_count に入れる
+  // Aのうち、誤った値の書かれたマスの個数を wrong_count に入れる
 
-// AとBに共通して含まれる要素からなる集合を返す
-bitset<50> intersection(bitset<50> A, bitset<50> B) { return A & B; }
-// AとBのうち少なくとも一方に含まれる要素からなる集合を返す
-bitset<50> union_set(bitset<50> A, bitset<50> B) { return A | B; }
-// AとBのうちどちらか一方にだけ含まれる要素からなる集合を返す
-bitset<50> symmetric_diff(bitset<50> A, bitset<50> B) { return A ^ B; }
-// Aから値xを除く
-bitset<50> subtract(bitset<50> A, int x) {
-  A.set(x, 0);
-  return A;
-}
-// Aに含まれる要素に1を加える(ただし、要素49が含まれる場合は0になるものとする)
-bitset<50> increment(bitset<50> A) {
-  bitset<50> ret = A << 1;  // 左シフトでまとめて+1する
-  if (A.test(49)) {
-    ret.set(0, 1);
-  }
-  return ret;
-}
-// Aに含まれる要素から1を引く(ただし、要素0が含まれる場合は49になるものとする)
-bitset<50> decrement(bitset<50> A) {
-  bitset<50> ret = A >> 1;  // 右シフトでまとめて-1する
-  if (A.test(0)) {
-    ret.set(49, 1);
-  }
-  return ret;
-}
-
-// Sに値xを加える
-bitset<50> add(bitset<50> S, int x) {
-  S.set(x, 1);  // xビット目を1にする
-  return S;
-}
-
-// 集合Sの内容を昇順で出力する(スペース区切りで各要素の値を出力する)
-void print_set(bitset<50> S) {
-  vector<int> cont;
-  for (int i = 0; i < 50; i++) {
-    if (S.test(i)) {
-      cont.push_back(i);
+  for (int i = 0; i < 9; i++) {
+    for (int j = 0; j < 9; j++) {
+      if (A.at(i).at(j) != (i + 1) * (j + 1)) {
+        A.at(i).at(j) = (i + 1) * (j + 1);
+        wrong_count++;
+      }
     }
   }
-  for (int i = 0; i < cont.size(); i++) {
-    if (i > 0) cout << " ";
-    cout << cont.at(i);
-  }
-  cout << endl;
+  correct_count = 81 - wrong_count;
 }
 
-// これより下は書き換えない
-
+// -------------------
+// ここから先は変更しない
+// -------------------
 int main() {
-  bitset<50> A, B;
-  int N;
-  cin >> N;
-  for (int i = 0; i < N; i++) {
-    int x;
-    cin >> x;
-    A = add(A, x);
-  }
-  int M;
-  cin >> M;
-  for (int i = 0; i < M; i++) {
-    int x;
-    cin >> x;
-    B = add(B, x);
+  // A君の回答を受け取る
+  vector<vector<int>> A(9, vector<int>(9));
+  for (int i = 0; i < 9; i++) {
+    for (int j = 0; j < 9; j++) {
+      cin >> A.at(i).at(j);
+    }
   }
 
-  // 操作
-  string com;
-  cin >> com;
+  int correct_count = 0;  // ここに正しい値のマスの個数を入れる
+  int wrong_count = 0;    // ここに誤った値のマスの個数を入れる
 
-  if (com == "intersection") {
-    print_set(intersection(A, B));
-  } else if (com == "union_set") {
-    print_set(union_set(A, B));
-  } else if (com == "symmetric_diff") {
-    print_set(symmetric_diff(A, B));
-  } else if (com == "subtract") {
-    int x;
-    cin >> x;
-    print_set(subtract(A, x));
-  } else if (com == "increment") {
-    print_set(increment(A));
-  } else if (com == "decrement") {
-    print_set(decrement(A));
+  // A, correct_count, wrong_countを参照渡し
+  saiten(A, correct_count, wrong_count);
+
+  // 正しく修正した表を出力
+  for (int i = 0; i < 9; i++) {
+    for (int j = 0; j < 9; j++) {
+      cout << A.at(i).at(j);
+      if (j < 8)
+        cout << " ";
+      else
+        cout << endl;
+    }
   }
+  // 正しいマスの個数を出力
+  cout << correct_count << endl;
+  // 誤っているマスの個数を出力
+  cout << wrong_count << endl;
 }
