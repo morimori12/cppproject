@@ -92,29 +92,29 @@ int main() { func(); }
 
 */
 
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
+using namespace std;
 
 int main() {
-  int N, S;
-  std::cin >> N >> S;
-  std::vector<int> A(N), P(N);
+  int N, S, count;
+  cin >> N >> S;
+  vector<int> A(N), P(N);
+  count = 0;
   for (int i = 0; i < N; i++) {
-    std::cin >> A.at(i);
+    cin >> A.at(i);
   }
   for (int i = 0; i < N; i++) {
-    std::cin >> P.at(i);
+    cin >> P.at(i);
   }
 
-  int ans = 0;
-
+  // リンゴ・パイナップルをそれぞれ1つずつ購入するとき合計S円になるような買い方が何通りあるか
+  // ここにプログラムを追記
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
       if (A.at(i) + P.at(j) == S) {
-        ans++;
+        count++;
       }
     }
   }
-
-  std::cout << ans << std::endl;
+  cout << count << endl;
 }

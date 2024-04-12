@@ -98,28 +98,28 @@ int main() {
 }
 */
 
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
+using namespace std;
 
 int main() {
-  std::vector<int> data(5);
-
-  // Read input into the vector
+  bool found = false;
+  vector<int> data(5);
   for (int i = 0; i < 5; i++) {
-    std::cin >> data.at(i);
+    cin >> data.at(i);
   }
-
-  // Count consecutive pairs
-  bool ans = false;
-  for (int i = 0; i < 4; i++) {
-    if (data.at(i) == data.at(i + 1)) {
-      ans = true;
+  // dataの中で隣り合う等しい要素が存在するなら"YES"を出力し、そうでなければ"NO"を出力する
+  // ここにプログラムを追記
+  for (int i = 1; i < 5; i++) {
+    if (data.at(i) == data.at(i - 1)) {
+      found = true;
+      break;
     }
   }
-  if (ans) {
-    std::cout << "YES" << std::endl;
+  if (found) {
+    cout << "YES" << endl;
   } else {
-    std::cout << "NO" << std::endl;
+    cout << "NO" << endl;
   }
-  return 0;  // Explicit return added for clarity
+
+  return 0;
 }
