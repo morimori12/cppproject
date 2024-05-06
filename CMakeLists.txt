@@ -33,6 +33,14 @@ add_compile_options(-march=native -Wall -Wextra -pedantic -Wshadow)
 # サブディレクトリの追加をした場合にやること
 #add_subdirectory(src/sample3)
 
+#アニメーション用のディレクトリ
+add_subdirectory(animation/animation1)
+
+find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
+
+target_link_libraries(Animation1 sfml-graphics)
+
+#C++勉強用のディレクトリ
 add_subdirectory(study/cppbuild)
 # 1. サブディレクトリ内に"CMakeLists.txt"ファイルを用意する
 #  1.1 add_executable(<プロジェクト名> <ソースファイル>)でコンパイル対象のファイルを指定

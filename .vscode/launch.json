@@ -36,6 +36,15 @@
             "args": [],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "CMake: Build Project"
+        },
+        {
+            "name": "(lldb) Launch Animation1", // [変更箇所] プロジェクト名
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/animation/animation1/Animation1", // [変更箇所] 実行ファイルパス
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "CMake: Build Project"
         }
     ]
 }

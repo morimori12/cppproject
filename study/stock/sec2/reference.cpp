@@ -13,6 +13,11 @@ void saiten(vector<vector<int>> &A, int &correct_count, int &wrong_count) {
         A.at(i).at(j) = (i + 1) * (j + 1);
         wrong_count++;
       }
+      /*
+      else{
+        correct_count++
+      }
+      でもアリ*/
     }
   }
   correct_count = 81 - wrong_count;
